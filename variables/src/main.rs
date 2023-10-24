@@ -1,4 +1,11 @@
 /*
+
+Rules of References
+Rust primarily follows these rules of references at any given time:
+
+At any given time, you can have either one mutable reference or any number of immutable references.
+References must always be valid.
+
 if we write the code like this:
 `
 let mut a = 0;
@@ -38,7 +45,7 @@ fn main() {
     println!("x: {}, &x: {:p}", x, &x);
 
 
-    let b = &a;
+    let b = &a; 
         
     println!("b: {}, &b: {:p}", b, &b);
 

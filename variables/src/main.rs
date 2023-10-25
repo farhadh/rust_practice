@@ -48,9 +48,8 @@ fn main() {
     let x = 1;
     println!("x: {}, &x: {:p}", x, &x);
 
-
     let mut b = &a; 
-        
+  
     println!("1 b: {}, &b: {:p}", b, &b);
 
     /*
@@ -59,7 +58,7 @@ fn main() {
     variable, and the new variable can have a different type or be mutable if you explicitly specify it.
     */
     b = &x;
-        
+ 
     println!("2 b: {}, &b: {:p}", b, &b);
-    
+
 }

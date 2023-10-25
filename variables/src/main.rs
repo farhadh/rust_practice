@@ -45,15 +45,17 @@ fn main() {
     println!("x: {}, &x: {:p}", x, &x);
 
 
-    let b = &a; 
+    let mut b = &a; 
         
-    println!("b: {}, &b: {:p}", b, &b);
+    println!("1 b: {}, &b: {:p}", b, &b);
 
     /*
-    In Rust, variables are immutable by default, but when you use the let keyword to create a new variable with the same name, it effectively shadows the previous variable, and the new variable can have a different type or be mutable if you explicitly specify it.
+    In Rust, variables are immutable by default, but when you use the `let` keyword to
+    create a new variable with the same name, it effectively shadows the previous
+    variable, and the new variable can have a different type or be mutable if you explicitly specify it.
     */
     b = &x;
         
-    println!("b: {}, &b: {:p}", b, &b);
+    println!("2 b: {}, &b: {:p}", b, &b);
     
 }

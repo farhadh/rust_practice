@@ -35,6 +35,10 @@ it means that `b` is a reference to `a`. In this case:
 - `b` CAN be changed/pointed to something/somewhere else because `b` is mutable.
 - `a` CAN be changed through `b` because `b` has borrowed `a` as an mutable reference.
 
+----------------------------------------------------------------
+let <put `mut` here and after the `&` if you want to change the value (0) through the reference (`b`)> a = 0;
+let <put `mut` here if you want to assign a new reference to `b`> b = &<put `mut` here and after the `&` if you want to change the value (0) through the reference (`b`)>a;
+----------------------------------------------------------------
 */
 
 fn main() {

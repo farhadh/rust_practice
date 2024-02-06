@@ -39,16 +39,18 @@ it means that `b` is a reference to `a`. In this case:
 let <put `mut` here and after the `&` if you want to change the value (0) through the reference (`b`)> a = 0;
 let <put `mut` here if you want to assign a new reference to `b`> b = &<put `mut` here and after the `&` if you want to change the value (0) through the reference (`b`)>a;
 ----------------------------------------------------------------
+
+Users of an immutable reference don’t expect the value to suddenly change out from under them! However, multiple immutable references are allowed because no one who is just reading the data has the ability to affect anyone else’s reading of the data.
 */
 
 fn main() {
-    let a = 0;
+    let a: i32 = 0;
     println!("a: {}, &a: {:p}", a, &a);
 
-    let x = 1;
+    let x: i32 = 1;
     println!("x: {}, &x: {:p}", x, &x);
 
-    let mut b = &a; 
+    let mut b: &i32 = &a; 
   
     println!("1 b: {}, &b: {:p}", b, &b);
 

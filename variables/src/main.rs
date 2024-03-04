@@ -22,7 +22,7 @@ let mut a = 0;
 let b = &mut a;
 `
 it means that `b` is a reference to `a`. In this case:
-- `b` cannot be changed/pointed to something/somewhere else because `b` is immutable.
+- `b` cannot be changed/pointed to something/somewhere else because `b` itselft is immutable.
 - `a` CAN be changed through `b` because `b` has borrowed `a` as an mutable reference.
 
 
@@ -50,9 +50,9 @@ fn main() {
     let x: i32 = 1;
     println!("x: {}, &x: {:p}", x, &x);
 
-    let mut b: &i32 = &a; 
-  
-    println!("1 b: {}, &b: {:p}", b, &b);
+    let mut b: &i32 = &a;
+    
+        println!("1 b: {}, &b: {:p}", b, &b);
 
     /*
     In Rust, variables are immutable by default, but when you use the `let` keyword to
@@ -60,7 +60,7 @@ fn main() {
     variable, and the new variable can have a different type or be mutable if you explicitly specify it.
     */
     b = &x;
- 
+
     println!("2 b: {}, &b: {:p}", b, &b);
 
 }

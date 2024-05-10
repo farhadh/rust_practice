@@ -48,14 +48,14 @@ fn main() {
 
     match p {
         /*
-        Here, `x` and `y` in the pattern (`Point { x , y }`) are placeholders or variables that we are creating to bind the values of the `x` and `y` fields from the `Point` struct `p` Specifically:
+        Here, `x` and `y` in the pattern (`Point { x , y }`) are placeholders or variables that we are creating to bind/assign the values of the `x` and `y` fields from the `Point` struct `p` Specifically:
             - `x`: This variable is being bound to the value of the `x` field of the `Point` struct `p` that
             matches the pattern. In other words, `x` will hold the value of `p.x`.
             - `y`: Similarly, this variable is being bound to the value of the `y` field of the Point struct p that matches the pattern. So, `y` will hold the value of `p.y`.
 
         Point { x, y } => println!("x: {}, y: {}", x, y)
 
-        In the match arm `Point { x: 0, y }`, `y` is being bound to the value of the `y` field of the `Point` struct `p`. However, `x` is not being directly used in this arm, it's only being pattern matched against the value `0`.
+        In the match arm `Point { x: 0, y }`, `y` is being bound to the value of the `y` field of the `Point` struct `p`. However, `x` is not being directly used in this arm, it's only being pattern matched against the value `0` – `0` is not bound to `x`.
 
         the variables `x` and `y` created within the match arm to hold the values extracted from the `Point` struct `p`. These bindings are only valid within the scope of that match arm.
         */

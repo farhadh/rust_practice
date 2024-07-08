@@ -37,7 +37,6 @@ fn main() {
 }
 
 
-
 struct Point {
     x: i32,
     y: i32,
@@ -59,7 +58,7 @@ fn main() {
 
         the variables `x` and `y` created within the match arm to hold the values extracted from the `Point` struct `p`. These bindings are only valid within the scope of that match arm.
         */
-        Point { x: a , y: b } => println!("2. On the a axis at {} and b axis at {}", a , b)
+        Point { x:0 , y } => println!("2. On the a axis at and b axis at {} and {}", p.x, y),
 
         /*
         x: a: Here, we are matching the x field of the Point struct p with a new variable a. So, a is bound to the value of the x field of p.
@@ -72,7 +71,7 @@ fn main() {
         b represents the value of the y field of p.
         These bindings are specific to this match arm and are only valid within its scope. They are separate from the fields x and y declared in the Point struct.
         */
-
+        Point { x , y } => println!("3. On the a axis at and {} b axis at {}", x, y),
 
     }
 }

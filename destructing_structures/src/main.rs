@@ -37,6 +37,63 @@ fn main() {
 }
 
 
+/*
+What Happens to y in This Pattern?
+In this pattern:
+
+Point { x, y: 0 }
+
+Here's the breakdown:
+
+- x is a binding. It means: "Whatever the value of p.x is, bind it to a variable named x so I can use it."
+
+- y: 0 is a match against a literal. It means: "Only match this arm if the p.y field is exactly 0."
+
+So, to directly answer your question:
+
+What happens to y?
+
+p.y is compared to 0.
+
+No variable is bound to the value of p.y.
+
+The matcher uses the value of p.y during the comparison, but that value is not saved or made available in the match arm’s body, because you didn't bind it.
+
+In short:
+
+x is stored in a variable named x for use in the match arm.
+
+y is not stored or made available — it's just compared to 0, and then discarded.
+
+
+
+
+Rust Pattern Matching Binding Rules
+By default, when you write something like x or y in a pattern (e.g., Point { x, y }), Rust binds the corresponding field's value to a new variable with that name.
+
+But if you specify a literal or a pattern with a value, like y: 0, Rust understands that as a value to match, not a binding.
+
+In Your Example
+
+match p {
+    Point { x, y: 0 } => println!("On the x axis at {x}"),
+    Point { x, y } => println!("On neither axis: ({x}, {y})"),
+}
+x is bound → x = p.x
+
+y: 0 means "match only if p.y == 0", but don't bind p.y to anything.
+
+So:
+
+You can use x in the first arm.
+
+You cannot use y in the first arm, because there's no variable y bound — just a condition p.y == 0.
+
+*/
+
+
+
+
 struct Point {
     x: i32,
     y: i32,

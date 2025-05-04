@@ -89,6 +89,142 @@ You can use x in the first arm.
 
 You cannot use y in the first arm, because there's no variable y bound — just a condition p.y == 0.
 
+
+Yes — the matching pattern does destructure the Point struct p.
+
+What does destructuring mean?
+Destructuring means breaking a complex value (like a struct or tuple) into its individual components (fields or elements), so you can:
+
+Match specific values (e.g., y: 0)
+
+Or bind parts to variables (e.g., x or y)
+
+Your example again:
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+let p = Point { x: 0, y: 7 };
+
+match p {
+    Point { x, y: 0 } => println!("On the x axis at {x}"),
+    Point { x, y } => println!("On neither axis: ({x}, {y})"),
+}
+What happens step by step:
+match p — you're matching against the value of p, which is a Point { x: 0, y: 7 }.
+
+Rust tries to match the value to the first arm: Point { x, y: 0 }
+
+This destructures p into its two fields, x and y.
+
+It binds x to p.x (0).
+
+It compares p.y to 0. In this case, it's not equal (p.y == 7), so the match fails.
+
+Rust moves to the second arm: Point { x, y }
+
+This also destructures p into x and y.
+
+Both x and y are bound to p.x and p.y, respectively.
+
+This match succeeds, and x == 0, y == 7 are now available for use.
+
+So yes:
+✅ Both arms destructure p
+❌ But only the second one binds both x and y
+✅ The first one binds x, and uses y in a literal match
+
+
+
+
+Let’s walk through a visual breakdown of what happens internally when Rust evaluates your match expression. This will show how p is destructured, and how each field is either bound to a variable or used for a value comparison.
+
+🧱 Struct Definition
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+📦 Value
+
+let p = Point { x: 0, y: 7 };
+So p holds this:
+
+yaml
+Copy
+p = Point {
+    x: 0,
+    y: 7
+}
+🎯 Match Statement
+
+match p {
+    Point { x, y: 0 } => println!("On the x axis at {x}"),
+    Point { x, y } => println!("On neither axis: ({x}, {y})"),
+}
+Let’s go arm-by-arm.
+
+✅ Arm 1: Point { x, y: 0 }
+🔍 What Rust does:
+Destructure p into its fields:
+
+p.x = 0
+
+p.y = 7
+
+Pattern Matching:
+
+x → bind p.x = 0 to variable x
+
+y: 0 → check if p.y == 0
+
+❌ It’s not — p.y == 7, so this pattern does not match
+
+Result: This arm is skipped. Only x would be bound, but y is not a variable — it was used for comparison.
+
+✅ Arm 2: Point { x, y }
+🔍 What Rust does:
+Destructure p:
+
+p.x = 0
+
+p.y = 7
+
+Pattern Matching:
+
+x → bind p.x = 0 to variable x
+
+y → bind p.y = 7 to variable y
+
+Result: This pattern matches, and now:
+
+ini
+Copy
+x = 0
+y = 7
+✅ You can use both x and y in the match arm body.
+
+🧠 Summary Diagram
+
+match p {
+    Point { x, y: 0 } => {
+        // Destructures p
+        // x = p.x
+        // compares p.y == 0
+        // ✅ binds x
+        // ❌ y not bound
+    }
+
+    Point { x, y } => {
+        // Destructures p
+        // x = p.x
+        // y = p.y
+        // ✅ binds x and y
+    }
+}
+
 */
 
 

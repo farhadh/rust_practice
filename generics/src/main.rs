@@ -1,4 +1,13 @@
 /*
+---------------------
+To define the generic largest function, we place type name declarations inside angle brackets, <>, between the name of the function and the parameter list, like this:
+
+fn largest<T>(list: &[T]) -> &T {
+We read this definition as: the function largest is generic over some type T. This function has one parameter named list, which is a slice of values of type T. The largest function will return a reference to a value of the same type T.
+
+--------------------
+
+
 `do_something` can take a value of any type and return it.
 fn do_something<DataType>(value: DataType) -> DataType {
     value

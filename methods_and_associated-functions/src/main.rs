@@ -25,6 +25,15 @@ impl Rectangle {
 the 2nd self (`Self { width...`) refers to the type that is implemented on (which is the `Rectangle`). In other words, the `Self` keywords in the return type and in the body of the function are aliases for the type that appears after the `impl` keyword, which in this case is `Rectangle`.
 
 We chose `&self` here for the same reason we used `&Rectangle` in the function version: we don’t want to take ownership, and we just want to read the data in the struct, not write to it. If we wanted to change the instance that we’ve called the method on as part of what the method does, we’d use `&mut self` as the first parameter.
+
+
+In Rust, an implementation refers to the process of defining the behavior of a type (such as a struct, enum, or trait) by providing the code for its associated functions, methods, or trait requirements. This is done using the impl keyword, which allows you to specify how a type behaves, either by defining its own methods or by implementing traits for it.
+
+Saying "X implements Y" means that there is an `impl Y for X` block that provides the concrete code for all the required items in the trait Y. This allows instances of type X to use the behavior defined by Y.
+
+The phrase "X implements Y" is a shorthand way of saying that the type `X` has been provided with an implementation for the trait `Y`. The key is that someone (you, the programmer, or a tool like #[derive]) has defined the behavior required by the trait `Y` for the type `X`.
+
+"X implements Y": `X` knows how to execute/perform the `Y` trait (behavior defined by `Y`), becuase the code has been written for it via `impl Y for X`.
 */
 
 
